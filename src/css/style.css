@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+.validateForm {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.validateBtn {
+    background-color: rgb(92, 184, 92);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+.validateInput {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.validateInput:focus {
+    border: 1px solid lightskyblue;
+}
+
+.validateBtn:hover {
+    cursor: pointer;
+}
+
+.cards {
+    display: flex;
+}
+
+.card {
+    background-position: 0 0;
+    width: 39px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+.visa {
+    background-image: url('/src/img/card-visa.gif');
+}
+
+.mastercard {
+    background-image: url('/src/img/card-mastercard.gif');
+}
+
+.amex {
+    background-image: url('/src/img/card-amex.gif');
+}
+
+.discover {
+    background-image: url('/src/img/card-discover.gif');
+}
+
+.discover {
+    background-image: url('/src/img/card-discover.gif');
+}
+
+.jcb {
+    background-image: url('/src/img/card-jcb.gif');
+}
+
+.diners {
+    background-image: url('/src/img/card-diners.gif');
+}
+
+.mir {
+    background-image: url('/src/img/card-mir.gif');
+}
+
+
+.cardTurnGrey {
+    background-position: bottom;
+}
