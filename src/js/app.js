@@ -107,13 +107,13 @@ export default class Validator {
       e.preventDefault();
       if (this.checkLuhn(this.validateInput.value)) {
         this.luhnCheck.textContent = " passed";
-        this.luhnCheck.classList.add('luhn-succes');
+        this.luhnCheck.classList.add("luhn-succes");
       } else {
         this.luhnCheck.textContent = " not passed";
       }
       this.card.forEach((element) => element.classList.remove("cardTurnGrey"));
       this.checkBankName(this.validateInput.value);
-      this.luhnCheck.classList.add('luhn-error');
+      this.luhnCheck.classList.add("luhn-error");
     });
 
     this.validateInput.addEventListener("input", () => {
@@ -122,8 +122,8 @@ export default class Validator {
           element.classList.remove("cardTurnGrey"),
         );
         this.luhnCheck.textContent = "";
-        this.luhnCheck.classList.add('luhn-succes');
-        this.luhnCheck.classList.remove('luhn-error');
+        this.luhnCheck.classList.add("luhn-succes");
+        this.luhnCheck.classList.remove("luhn-error");
       }
     });
   }
