@@ -1,3 +1,5 @@
+import checkBank from "./checkBank";
+
 export default class Validator {
   constructor() {
     this.validateInput = document.querySelector(".validateInput");
@@ -24,31 +26,42 @@ export default class Validator {
     return Number(sum % 10) === 0;
   }
 
+  classListAdd(el) {
+    el.classList.add("cardTurnGrey");
+  }
+
+  classListRemove(el) {
+    el.classList.remove("cardTurnGrey");
+  }
+
   checkBankName(ccn) {
     const ccnFirstDigit = Number(ccn[0]);
-    const ccnTwoDigits = Number(ccn.slice(0, 2));
-    const ccnThreeDigits = Number(ccn.slice(0, 3));
-    const ccnFourDigits = Number(ccn.slice(0, 4));
+    // const ccnTwoDigits = Number(ccn.slice(0, 2));
+    // const ccnThreeDigits = Number(ccn.slice(0, 3));
+    // const ccnFourDigits = Number(ccn.slice(0, 4));
+    const ccnTwoDigits = Number(ccn.toString().slice(0, 2));
+    const ccnThreeDigits = Number(ccn.toString().slice(0, 3));
+    const ccnFourDigits = Number(ccn.toString().slice(0, 4));
 
     if (ccnFirstDigit === 4) {
-      this.card.forEach((element) => element.classList.add("cardTurnGrey"));
-      this.card[0].classList.remove("cardTurnGrey");
-      return;
+      checkBank(ccn);
+      this.card.forEach((element) => this.classListAdd(element));
+      this.classListRemove(this.card[0]);
     }
 
     if (
       (ccnTwoDigits >= 51 && ccnTwoDigits <= 55) ||
       (ccnFourDigits >= 2211 && ccnFourDigits <= 2720)
     ) {
-      this.card.forEach((element) => element.classList.add("cardTurnGrey"));
-      this.card[1].classList.remove("cardTurnGrey");
-      return;
+      checkBank(ccn);
+      this.card.forEach((element) => this.classListAdd(element));
+      this.classListRemove(this.card[1]);
     }
 
     if (ccnTwoDigits === 34 || ccnTwoDigits === 37) {
-      this.card.forEach((element) => element.classList.add("cardTurnGrey"));
-      this.card[2].classList.remove("cardTurnGrey");
-      return;
+      checkBank(ccn);
+      this.card.forEach((element) => this.classListAdd(element));
+      this.classListRemove(this.card[2]);
     }
 
     if (
@@ -56,21 +69,15 @@ export default class Validator {
       ccnFourDigits === 6011 ||
       (ccnThreeDigits >= 644 && ccnThreeDigits <= 649)
     ) {
-      this.card.forEach((element) => element.classList.add("cardTurnGrey"));
-      this.card[3].classList.remove("cardTurnGrey");
-      return;
+      checkBank(ccn);
+      this.card.forEach((element) => this.classListAdd(element));
+      this.classListRemove(this.card[3]);
     }
 
     if (ccnFourDigits >= 3528 && ccnFourDigits <= 3589) {
-      this.card.forEach((element) => element.classList.add("cardTurnGrey"));
-      this.card[4].classList.remove("cardTurnGrey");
-      return;
-    }
-
-    if (ccnFourDigits >= 3528 && ccnFourDigits <= 3589) {
-      this.card.forEach((element) => element.classList.add("cardTurnGrey"));
-      this.card[4].classList.remove("cardTurnGrey");
-      return;
+      checkBank(ccn);
+      this.card.forEach((element) => this.classListAdd(element));
+      this.classListRemove(this.card[4]);
     }
 
     if (
@@ -79,53 +86,44 @@ export default class Validator {
       ccnTwoDigits === 39 ||
       (ccnThreeDigits >= 300 && ccnThreeDigits <= 305)
     ) {
-      this.card.forEach((element) => element.classList.add("cardTurnGrey"));
-      this.card[5].classList.remove("cardTurnGrey");
-      return;
-    }
-
-    if (
-      ccnTwoDigits === 36 ||
-      ccnTwoDigits === 38 ||
-      ccnTwoDigits === 39 ||
-      (ccnThreeDigits >= 300 && ccnThreeDigits <= 305)
-    ) {
-      this.card.forEach((element) => element.classList.add("cardTurnGrey"));
-      this.card[5].classList.remove("cardTurnGrey");
-      return;
+      checkBank(ccn);
+      this.card.forEach((element) => this.classListAdd(element));
+      this.classListRemove(this.card[5]);
     }
 
     if (ccnFourDigits >= 2200 && ccnFourDigits <= 2204) {
-      this.card.forEach((element) => element.classList.add("cardTurnGrey"));
-      this.card[5].classList.remove("cardTurnGrey");
-      return;
+      checkBank(ccn);
+      this.card.forEach((element) => this.classListAdd(element));
+      this.classListRemove(this.card[6]);
     }
   }
 
   setListeners() {
-    this.validateBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (this.checkLuhn(this.validateInput.value)) {
-        this.luhnCheck.textContent = " passed";
-        this.luhnCheck.classList.add("luhn-succes");
-      } else {
-        this.luhnCheck.textContent = " not passed";
-      }
-      this.card.forEach((element) => element.classList.remove("cardTurnGrey"));
-      this.checkBankName(this.validateInput.value);
-      this.luhnCheck.classList.add("luhn-error");
-    });
+    if (this.validateBtn) {
+      this.validateBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (this.checkLuhn(this.validateInput.value)) {
+          this.luhnCheck.textContent = " passed";
+          this.luhnCheck.classList.add("luhn-succes");
+        } else {
+          this.luhnCheck.textContent = " not passed";
+        }
+        this.card.forEach((element) => this.classListRemove(element));
+        this.checkBankName(this.validateInput.value);
+        this.luhnCheck.classList.add("luhn-error");
+      });
+    }
 
-    this.validateInput.addEventListener("input", () => {
-      if (this.validateInput.value === "") {
-        this.card.forEach((element) =>
-          element.classList.remove("cardTurnGrey"),
-        );
-        this.luhnCheck.textContent = "";
-        this.luhnCheck.classList.add("luhn-succes");
-        this.luhnCheck.classList.remove("luhn-error");
-      }
-    });
+    if (this.validateInput) {
+      this.validateInput.addEventListener("input", () => {
+        if (this.validateInput.value === "") {
+          this.card.forEach((element) => this.classListRemove(element));
+          this.luhnCheck.textContent = "";
+          this.luhnCheck.classList.add("luhn-succes");
+          this.luhnCheck.classList.remove("luhn-error");
+        }
+      });
+    }
   }
 }
 
