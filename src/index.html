@@ -3,22 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card Check</title>
+    <title>Popover</title>
 </head>
 <body>
-    <section class="cards">
-        <div class="card visa"></div>
-        <div class="card mastercard"></div>
-        <div class="card amex"></div>
-        <div class="card discover"></div>
-        <div class="card jcb"></div>
-        <div class="card diners"></div>
-        <div class="card mir"></div>
-    </section>
-    <form class="validateForm">
-        <input type="text" class="validateInput" placeholder="Credit card number">
-        <button type="submit" class="validateBtn">Click to Validate</button>
-    </form>
-    <div>Luhn Algorithm Check:<span class="luhnCheck"></span></div>
+    <div class="popover hidden">
+        <div class="arrow"></div>
+        <h3 class="popover-header">Popover title</h3>
+        <div class="popover-body">And here's some amazing content. It's very engaging. Right?</div>
+    </div>
+    <button class="btn">Click to toggle popover</button>
 </body>
 </html>
